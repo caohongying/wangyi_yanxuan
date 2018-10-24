@@ -1,34 +1,33 @@
 <template>
   <div class="ItemWarp">
-    <header class="header newItemList" >
-      <a class=newItemList>
-        <span >新品首发</span>
-        <!--<span v-else="">人气推荐·好物精选</span>-->
+    <header class="header" :class='className' >
+      <a :class="{optimize:className!=='newItemList'}">
+        <span v-if="className==='newItemList'">新品首发</span>
+        <span v-else="">人气推荐·好物精选</span>
         <div>
-          <span>
-            <span>查看全部</span>
-            <i class="right-icon"></i>
-          </span>
+                <span>
+                  <span>查看全部</span>
+                  <i class="right-icon"></i>
+                </span>
         </div>
       </a>
     </header>
-    <!--:id ="className"-->
-    <div  class="ItemList">
+    <div :id ="className" class="ItemList">
       <ul>
-        <li >
+        <li v-for="(item,index) in ItemList" :key="index">
           <a>
             <div class="img-warp">
-              <img src="http://yanxuan.nosdn.127.net/1f12ef5d66879785a292c422647015e0.jpg">
+              <img :src="item.listPicUrl">
             </div>
             <div class="item-name">
-              <span>
-                墨镜
-              </span>
+                        <span>
+                          {{item.name}}
+                        </span>
             </div>
             <div class="item-desc">
-              轻奢
+              {{item.simpleDesc}}
             </div>
-            <div class="item-price">￥25</div>
+            <div class="item-price">￥{{item.retailPrice}}</div>
           </a>
         </li>
         <li class="item-more">
@@ -42,7 +41,22 @@
 </template>
 
 <script>
+  import BScroll from 'better-scroll'
   export default {
+    mounted(){
+      const BSbox =document.getElementById(this.className);
+      this.newAndP=new BScroll(BSbox,{
+        click: true,
+        scrollX:true,
+      });
+    },
+    props:{
+      className:String,
+      ItemList:Array
+    },
+    data() {
+      return {}
+    }
 
   }
 </script>
@@ -89,7 +103,7 @@
             height: .29333rem;
             width: .13333rem;
             margin-left: .08rem;
-        &.haowu
+        &.optimize
           color: #B4A078;
           >div
             background-color  #F4E9CB

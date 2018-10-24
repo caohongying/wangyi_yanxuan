@@ -1,30 +1,30 @@
 <template>
   <div class="cateListContainer">
-    <h3 class="title">居家好物</h3>
+    <h3 class="title">{{item.name}}好物</h3>
     <div class="cateList">
-      <ul>
-        <li >
+      <ul class="goodList">
+        <li v-for="(prod,index) in item.itemList" :key="index">
           <a href="javascript:;">
             <div class="cate-header">
               <div class="img-warp">
-                <img src="http://yanxuan.nosdn.127.net/1059f517cd4a529fcc3f9299f5173bef.png">
+                <img :src="prod.listPicUrl">
               </div>
-              <p class="cate-info">素颜肌</p>
+              <p class="cate-info">{{prod.simpleDesc}}</p>
             </div>
-            <div class="support" >
-              <p>限时购</p>
+            <div class="support" v-if="prod.promTag">
+              <p>{{prod.promTag}}</p>
             </div>
             <div class="cate-name">
-              <span>砰然心动花</span>
+              <span>{{prod.name}}</span>
             </div>
             <div class="price">
-              <span>￥299</span>
+              <span>￥{{item.retailPrice}}</span>
             </div>
           </a>
         </li>
         <li class="cate-more" :key='8'>
           <a href="javascript:;">
-            <p>更多居家好物</p>
+            <p>更多{{item.name}}好物</p>
             <i class="right-icon"></i>
           </a>
         </li>
@@ -35,7 +35,9 @@
 
 <script>
   export default {
-
+    props:{
+      item:Object
+    }
   }
 </script>
 
@@ -52,7 +54,7 @@
       background-color: #fff
     >.cateList
       background-color: #fff
-      >ul
+      .goodList
         position: relative;
         z-index: 0;
         overflow: hidden;

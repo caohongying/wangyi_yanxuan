@@ -14,7 +14,7 @@
         3.5折特价
       </div>
     </div>
-    <div class="minorPic" style='backgroundImage: url("https://yanxuan.nosdn.127.net/7af712a2e7af35c752a45ab1451c33a2.jpg")'>
+    <div class="minorPic" style='background-image: url("https://yanxuan.nosdn.127.net/7af712a2e7af35c752a45ab1451c33a2.jpg")'>
       <div class="topicTag">
         <div class="tag">好货推荐</div>
       </div>

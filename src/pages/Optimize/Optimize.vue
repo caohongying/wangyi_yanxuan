@@ -1,28 +1,13 @@
 <template>
   <div class="shiwuContiner">
+    <HeaderGuide/>
     <div id="scrollBox">
       <section class="contentWarp">
         <div class="swiper">
           <div class="swiper-container">
             <div class="swiper-wrapper">
               <a class="swiper-slide">
-                <img src="https://yanxuan.nosdn.127.net/c6a391ff65f798cbf51030cb35ccdb25.jpg">
-                <div class="content">
-                  <div class="subTitle">严选推荐</div>
-                  <div class="title">好毛巾</div>
-                  <div class="desc">不要错过</div>
-                </div>
-              </a>
-              <a class="swiper-slide">
-                <img src="https://yanxuan.nosdn.127.net/c6a391ff65f798cbf51030cb35ccdb25.jpg">
-                <div class="content">
-                  <div class="subTitle">严选推荐</div>
-                  <div class="title">好毛巾</div>
-                  <div class="desc">不要错过</div>
-                </div>
-              </a>
-              <a class="swiper-slide">
-                <img src="https://yanxuan.nosdn.127.net/c6a391ff65f798cbf51030cb35ccdb25.jpg">
+                <img src="./images/a.jpeg">
                 <div class="content">
                   <div class="subTitle">严选推荐</div>
                   <div class="title">好毛巾</div>
@@ -36,7 +21,7 @@
           <div id="article-scroll">
             <ul class="article-list">
               <li >
-                <div class="img-container" style='background: url("https://yanxuan.nosdn.127.net/1662ac1fabbc2e495bdda39357a93d65.png")'></div>
+                <div class="img-container" style=' background: url("https://yanxuan.nosdn.127.net/1662ac1fabbc2e495bdda39357a93d65.png");'></div>
                 <div class="article-count">
                   <div>106篇文章</div>
                 </div>
@@ -50,29 +35,29 @@
             <div class="commonTitle">为你推荐</div>
             <MainPosItem/>
             <MinorPosItem />
-            <!--<MinorPosItem :minorData="shiwu_data.recommendThree"/>-->
+            <MinorPosItem />
           </div>
         </div>
-        <!--<div class="tenFifteen">
+        <div class="tenFifteen">
           <div class="inner">
             <div class="title">十点一刻</div>
             <div id="tenFifteenBS">
-              <div class="list" v-if="shiwu_data.tenfifteen">
-                <a class="main" href="javascript:;" v-for="(item,index) in shiwu_data.tenfifteen" :key="index">
+              <div class="list" >
+                <a class="main" href="javascript:;" >
                   <div class="line-title">
                     <span>今日话题</span>
                   </div>
-                  <div class="title">{{item.title}}</div>
-                  <div class="desc">{{item.desc}}</div>
+                  <div class="title">哪些瞬间</div>
+                  <div class="desc">热泪盈眶</div>
                   <div class="joinInfo">
                     <div class="joininner">
-                      <div class="avatars" v-if="item.participantAvatar">
-                        <div class="avatar" v-for="(avatar,index) in item.participantAvatar" :key="index" v-if="avatar">
-                          <img :src="avatar" alt="">
+                      <div class="avatars" >
+                        <div class="avatar" >
+                          <img src="//yanxuan.nosdn.127.net/fdf53bd9a20d4563dbb1147b974d0361.jpg?imageView&thumbnail=48y48" alt="">
                         </div>
                       </div>
                       <div class="joincount">
-                        {{item.participantNum}}人参与话题
+                        5人参与话题
                       </div>
                     </div>
                   </div>
@@ -86,36 +71,39 @@
               </div>
             </div>
           </div>
-        </div>-->
+        </div>
         <div class="commonTitle">严选臻品</div>
-        <!--<MainPosItem :mainData="shiwu_data.zhenOne"/>-->
-        <!--<MinorPosItem :minorData="shiwu_data.zhenTwo"/>
-        <MinorPosItem :minorData="shiwu_data.zhenTwo"/>-->
+        <MainPosItem/>
+        <MinorPosItem/>
+        <MinorPosItem/>
         <div class="exploreLook">
           <div class="commonTitle">严选LOOK</div>
           <div class="imgWarp">
-            <img src="//yanxuan.nosdn.127.net/ce03b9c9d8636b04564a6e36d5be0781.jpg?imageView&quality=75" alt="">
+            <img src="//yanxuan.nosdn.127.net/ce77482c57088c10ef8817a7fcbcce10.jpg?imageView&quality=75" alt="">
           </div>
           <div class="topicInfo">
             <div class="author">
               <div class="avatr">
-                <img src="//yanxuan.nosdn.127.net/485ff1be6912be6ae696b6d360d1b101.png?imageView&quality=75&thumbnail=48y48 alt="">
+                <img src="//yanxuan.nosdn.127.net/8818ab8e49f6b27d57921ce73768bbf8.jpg?imageView&quality=75&thumbnail=48y48" alt="">
               </div>
               <div class="nickname">s****u</div>
             </div>
             <div class="desc">
-              加了冰块一个小金橘，还是觉得比较甜。照评论员说的，下次用苏打水稀释。因为只优惠了10块钱，我有囤了一瓶～
+              加了冰块一个小金橘，还是觉得比较甜。
             </div>
           </div>
         </div>
-        <!--<div class="moreSurprises">
+        <div class="moreSurprises">
           <div class="lineTitle">
             <div>
               更多精彩
             </div>
           </div>
-          <Surprise v-if="moreSurprise" v-for="(surpise,index) in moreSurprise" :surpise = 'surpise'/>
-        </div>-->
+          <Surprise/>
+          <Surprise/>
+          <Surprise/>
+          <!--<Surprise v-if="moreSurprise" v-for="(surpise,index) in moreSurprise" :surpise = 'surpise'/>-->
+        </div>
       </section>
     </div>
     <!--<i class="gotoTop" @click = 'gotoTop' v-show="isShowGotoTop"></i>-->
@@ -126,15 +114,15 @@
   import Swiper from 'swiper'
   import BScroll from 'better-scroll'
   import {mapState} from 'vuex'
-
+  import HeaderGuide from '../../components/HeaderGuide/HeaderGuide.vue'
   import MainPosItem from './MainPosItem/MainPosItem.vue'
   import MinorPosItem from './MinorPosItem/MinorPosItem.vue'
-//  import Surprise from './Surprise/Surprise.vue'
+  import Surprise from './Surprise/Surprise.vue'
   export default {
     mounted(){
       new Swiper('.swiper-container',{
         centeredSlides: true,
-        slidesPerView: 'auto',
+//        slidesPerView: 'auto',
         spaceBetween: -5,
         autoplay: {
           delay: 2500,
@@ -146,7 +134,8 @@
     components:{
       MainPosItem,
       MinorPosItem,
-//      Surprise
+      Surprise,
+      HeaderGuide
     }
 
   }
@@ -176,8 +165,9 @@
       font-size: .37333rem;
       color: #333
   .shiwuContiner
+    background #f4f4f4
     width 100%
-    height 100%
+    /*height 100%*/
     padding-top 1.16rem
     >#scrollBox
       width 100%
@@ -444,7 +434,7 @@
             padding: .32rem .4rem .61333rem;
             background-color: #fff
             >.author
-              height: 0.64rem;
+              height: 1.6rem;
               font-size: 0.32rem
               margin-bottom: .32rem
               display flex
