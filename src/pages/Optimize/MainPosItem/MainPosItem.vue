@@ -1,17 +1,17 @@
 <template>
-  <a class="mainPosItem" href="javascript:;" >
-    <div class="imgContiner" style="backgroundImage: url('https://yanxuan.nosdn.127.net/09d83c97c9963495e6518cfbec776b4c.jpg')">
+  <a class="mainPosItem" href="javascript:;" v-if="main">
+    <div class="imgContiner" :style="{backgroundImage: 'url('+main.picUrl+')'}">
       <div class="topicTag">
-        <div class="tag">严选推荐</div>
+        <div class="tag">{{main.nickname}}</div>
       </div>
     </div>
     <div class="topicInfo">
       <div class="line1">
-        <div class="desc">白衣少年</div>
-        <div class="price">9.9元起</div>
+        <div class="desc">{{main.title}}</div>
+        <div class="price">{{main.priceInfo}}元起</div>
       </div>
       <div class="line2">
-       149减20
+       {{main.subTitle}}
       </div>
     </div>
   </a>
@@ -19,9 +19,13 @@
 
 <script>
   export default {
+    props:{
+      main:Object
+    },
     data() {
       return {}
     }
+
   }
 </script>
 

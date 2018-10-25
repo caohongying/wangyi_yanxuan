@@ -1,22 +1,22 @@
 <template>
-  <a class="minorPosItem" href="javascript:;" >
+  <a class="minorPosItem" href="javascript:;" v-if="minor">
     <div class="topicInfo">
       <div class="author">
         <div class="avatar">
-          <img src="https://yanxuan.nosdn.127.net/0e01ded6e62a0d479ef6d3b9e4748305.png">
+          <img v-lazy="minor.avatar">
         </div>
-        <div class="nickname">丁磊</div>
+        <div class="nickname">{{minor.nickname}}</div>
       </div>
       <div class="line1">
-        世界杯喝什么
+        {{minor.title}}
       </div>
       <div class="line2">
-        3.5折特价
+        {{minor.subTitle}}
       </div>
     </div>
-    <div class="minorPic" style='background-image: url("https://yanxuan.nosdn.127.net/7af712a2e7af35c752a45ab1451c33a2.jpg")'>
+    <div class="minorPic" :style='{backgroundImage:`url(${minor.picUrl})`}'>
       <div class="topicTag">
-        <div class="tag">好货推荐</div>
+        <div class="tag">{{minor.typeName}}</div>
       </div>
     </div>
   </a>
@@ -24,9 +24,9 @@
 
 <script>
   export default {
-//    props:{
-//      minorData:Object
-//    },
+    props:{
+      minor:Object
+    },
     data() {
       return {}
     }

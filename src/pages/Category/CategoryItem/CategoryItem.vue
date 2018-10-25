@@ -1,21 +1,13 @@
 <template>
   <div class="cateListL2">
-    <div class="title">推荐专区</div>
+    <div class="title">{{category.name}}</div>
     <ul class="list">
-      <li class="cateItem" >
+      <li class="cateItem" v-for="(subCate,index) in category.subCateList" :key="index">
         <a href="javascript:;">
           <div class="imgWarp">
-            <img src="http://yanxuan.nosdn.127.net/0cbe111b280355fd9090bf588f6f4df0.png?imageView&quality=85&thumbnail=144x144">
+            <img :src="subCate.wapBannerUrl">
           </div>
-          <div class="name">床上用品</div>
-        </a>
-      </li>
-      <li class="cateItem" >
-        <a href="javascript:;">
-          <div class="imgWarp">
-            <img src="http://yanxuan.nosdn.127.net/0cbe111b280355fd9090bf588f6f4df0.png?imageView&quality=85&thumbnail=144x144">
-          </div>
-          <div class="name">床上用品</div>
+          <div class="name">{{subCate.name}}</div>
         </a>
       </li>
     </ul>
@@ -24,6 +16,9 @@
 
 <script>
   export default {
+    props:{
+      category:Object
+    },
     data() {
       return {}
     }

@@ -15,16 +15,18 @@ export default {
     }
     cb&&cb()
   },
-  async getOptimizeData({commit}){
+  async getOptimizeData({commit},cb){
     const result=await reqOptimizeData();
     if(result.code===0){
       commit(GET_OPTIMIZE_DATA,result.data)
     }
+    cb&&cb()
   },
-  async getCategoryData({commit}){
+  async getCategoryData({commit},cb){
     const result=await reqCategoryData();
     if(result.code===0){
       commit(GET_CATEGORY_DATA,result.data)
     }
+    cb&&cb()
   }
 }

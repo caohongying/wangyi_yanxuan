@@ -18,7 +18,7 @@
               <span>{{prod.name}}</span>
             </div>
             <div class="price">
-              <span>￥{{item.retailPrice}}</span>
+              <span>￥{{prod.retailPrice}}</span>
             </div>
           </a>
         </li>

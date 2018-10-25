@@ -155,9 +155,15 @@
           </div>
         </div>
       </section>
-
+      <i class="gotoTop" @click = 'gotoTop' v-show="isShowGotoTop"></i>
+      <div class="newsWarp" v-if="isShowNews">
+        <div class="mask"></div>
+        <i class="close-button" @click = 'isShowNews = false'></i>
+        <div class="modal" style="backgroundImage:url(https://yanxuan.nosdn.127.net/3296fd0c446376e1ec5f76a4f8062aa1.png?imageView&quality=85&thumbnail=630x804)" >
+          <a class="linkBtn" href="javascript:void(0);" data-reactid=".1.2.0.0">立即去领取</a>
+        </div>
+      </div>
     </div>
-
   </div>
 </template>
 <script>
@@ -172,7 +178,9 @@
     data(){
       return{
         currentIndex:0,
-        countdownTime:0
+        countdownTime:0,
+        isShowGotoTop:false,
+        isShowNews:true
       }
     },
     computed:{
@@ -208,6 +216,14 @@
       },1000);
       const result=this.$store.dispatch('getHomeData',()=>{
         this.countdownTime = this.home_data.flashSaleIndexVO.remainTime;
+
+        this.$nextTick(() => {
+          this._initScroll()
+        })
+      });
+    },
+    methods:{
+      _initScroll(){
         new Swiper('.swiper-container',{
           initialSlide :0,
           observer:true,//修改swiper自己或子元素时，自动初始化swiper
@@ -222,19 +238,18 @@
             el: '.swiper-pagination',
           }
         });
-        this.$nextTick(() => {
-          this._initScroll()
-        })
-      });
-    },
-    methods:{
-      _initScroll(){
-
-        new BScroll('.homeContiner',{
+        this.homeScroll=new BScroll('.homeContiner',{
           click: true,
           scrollX:false,
+          probeType:1
         });
-
+        this.homeScroll.on('scroll',({x,y})=>{
+          if(Math.abs(y)>document.body.clientHeight){
+            this.isShowGotoTop=true
+          }else {
+            this.isShowGotoTop=false
+          }
+        });
         this.navBar=new BScroll('.nav',{
           click: true,
           scrollX:true,
@@ -249,6 +264,10 @@
       selectItem(index){
         this.currentIndex=index;
         this.navBar.scrollToElement(this.$refs.typesUl.children[index],1000);
+      },
+      gotoTop(){
+        this.homeScroll.scrollTo(0,0,1000)
+        this.isShowGotoTop=false;
       }
     }
   }
@@ -705,4 +724,64 @@
                 color: #999;
 
 
+      >.gotoTop
+        position: absolute;
+        right: .30667rem;
+        bottom: 0rem;
+        vertical-align: middle;
+        width: 1.09333rem;
+        height: 1.09333rem;
+        background-image: url(//yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/goToTop-7a19216f77.png);
+        background-size: 1.09333rem 1.09333rem;
+        z-index: 2;
+      .newsWarp
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 9999;
+        >.mask
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0,0,0,.5);
+        >.close-button
+          position: fixed;
+          right: .4rem;
+          top: .8rem;
+          z-index: 2;
+          display: inline-block;
+          vertical-align: middle;
+          background-image: url(//yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/modalClose-9365f12572.png);
+          background-repeat: no-repeat;
+          background-size: 100% 100%;
+          width: .85333rem;
+          height: .85333rem;
+        .modal
+          transform: translate(-50%,-50%);
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          z-index: 1;
+          width: 8.4rem;
+          height: 10.72rem;
+          background-size 100%
+          .linkBtn
+            display: block;
+            position: absolute;
+            left: .53333rem;
+            bottom: .64rem;
+            width: 7.33333rem;
+            height: 1.06667rem;
+            border-radius: .05333rem;
+            background: #B4282D;
+            text-align: center;
+            line-height: 1.06667rem;
+            font-size: .37333rem;
+            font-family: PingFangSC-Regular;
+            color: #fff;
 </style>

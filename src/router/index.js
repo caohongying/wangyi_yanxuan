@@ -6,6 +6,7 @@ const Optimize=()=>import('../pages/Optimize/Optimize.vue');
 const Category=()=>import('../pages/Category/Category.vue');
 const ShopChart=()=>import('../pages/ShopChart/ShopChart.vue');
 const Personal=()=>import('../pages/Personal/Personal.vue');
+const Interlayer=()=>import('../pages/Interlayer/Interlayer.vue');
 
 
 Vue.use(VueRouter);
@@ -44,10 +45,14 @@ export default new VueRouter({
       path: '/personal',
       component: Personal,
     },
+    {
+      path: '/interlayer',
+      component: Interlayer,
+    },
 
     {
       path: '/',
-      redirect: '/home'
+      redirect: '/interlayer'
     },
 
   ]

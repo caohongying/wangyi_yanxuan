@@ -99,7 +99,7 @@
               更多精彩
             </div>
           </div>
-          <Surprise v-if="optimize_data.findMore.length" v-for="(surprise,index) in newArr" :key="index" :surprise="surprise"/>
+          <Surprise v-if="optimize_data.findMore.length" v-for="(surprise,index) in optimize_data.findMore" :key="index" :surprise="surprise"/>
         </div>
       </section>
     </div>
@@ -118,54 +118,18 @@
   export default {
     data(){
       return{
-        //懒加载数组的长度
         showSurprise:0,
-        //是否滑倒顶部
         isShowGotoTop:false,
-        //实际滑动的高度
-        scrollY:0,
-//        可滑动的高度
-        height:0
       }
     },
     computed:{
       ...mapState(['optimize_data']),
-//      图片懒加载，根据滑动的高度，计算数组加载的长度
-      newArr(){
-
-        if(this.optimize_data.findMore){
-//          获取之前的高度
-
-          if(-this.scrollY>this.height-650){
-//            每次加载4张
-            if(this.showSurprise+4<this.optimize_data.findMore.length){
-              this.showSurprise+=4;
-            }else{
-              this.showSurprise=this.optimize_data.findMore.length
-            }
-
-          }
-          console.log(this.showSurprise,"高度"+this.height,"滑动"+this.scrollY);
-//          返回截取的数组用slice,不用splice
-          return this.optimize_data.findMore.slice(0,this.showSurprise)
-        }
-      }
-    },
-    watch:{
-//      监视数组的变化，重新刷新，获取新的高度
-      arr(value){
-        this.$nextTick(() => {
-          this.scrollBox.refresh();
-          this.height=document.querySelector('.contentWarp').offsetHeight
-        })
-
-      }
     },
     mounted(){
       this.$store.dispatch('getOptimizeData',()=>{
         this.$nextTick(()=>{
           this._initOptimize()
-          this.height=document.querySelector('.contentWarp').offsetHeight
+
         })
       })
     },
@@ -176,14 +140,11 @@
           probeType:1
         });
         this.scrollBox.on('scroll',({x,y})=>{
-          //判断是否显示滑动到顶部图标
           if(Math.abs(y)>document.body.clientHeight){
             this.isShowGotoTop=true
           }else {
             this.isShowGotoTop=false
           }
-//          实时获取滑动的高度,用于回到顶部和计算数组长度
-          this.scrollY=y
         });
 
         this.articleScroll=new BScroll('#article-scroll',{

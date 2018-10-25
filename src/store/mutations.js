@@ -7,6 +7,6 @@ export default {
     state.optimize_data=optimize_data
   },
   [GET_CATEGORY_DATA](state,category_data){
-    state.category_data=category_data
+    state.category_data=category_data.categoryL1List
   }
 }

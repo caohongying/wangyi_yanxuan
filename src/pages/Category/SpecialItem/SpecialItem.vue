@@ -1,11 +1,11 @@
 <template>
   <ul class="cateListL2">
-    <li class="cateItem" >
+    <li class="cateItem" v-for="(subCate,index) in subCateList" :key="index">
       <a href="javascript:;">
         <div class="imgWarp">
-          <img src="http://yanxuan.nosdn.127.net/5efcbeecb663e629c1bb309c7b356f60.png?imageView&quality=85&thumbnail=144x144">
+          <img :src="subCate.bannerUrl">
         </div>
-        <div class="name">行李箱</div>
+        <div class="name">{{subCate.name}}</div>
       </a>
     </li>
   </ul>
@@ -13,6 +13,9 @@
 
 <script>
   export default {
+    props:{
+      subCateList:Array
+    },
     data() {
       return {}
     }

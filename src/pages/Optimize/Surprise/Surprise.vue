@@ -1,19 +1,22 @@
 <template>
-  <a class="surprise">
+  <a class="surprise" v-if="surprise.topicId">
     <div class="imgWarp">
-      <div class="left-img" style="background-image:url(//yanxuan.nosdn.127.net/ba3d89c57b8267f3564429e0b173f305.jpg?imageView&quality=75);background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-ms-background-size:cover;-moz-background-size:cover;background-position:center;background-repeat:no-repeat;display: none" ></div>
-      <div class="right-img" style="display: none">
-        <div class="up" style="background-image:url(//yanxuan.nosdn.127.net/9325ccc8a1507ac60a13481681cfd88a.png?imageView&quality=75);background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-ms-background-size:cover;-moz-background-size:cover;background-position:center;background-repeat:no-repeat;"></div>
-        <div class="down" style="background-image:url(//yanxuan.nosdn.127.net/9325ccc8a1507ac60a13481681cfd88a.png?imageView&quality=75);background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-ms-background-size:cover;-moz-background-size:cover;background-position:center;background-repeat:no-repeat;"></div>
+      <div class="left-img" :style="{backgroundImage:`url(${surprise.picList[0]})`}" v-if="surprise.picList"></div>
+      <div class="right-img" v-if="surprise.picList">
+        <div class="up" :style="{backgroundImage:`url(${surprise.picList[1]})`}" ></div>
+        <div class="down" :style="{backgroundImage:`url(${surprise.picList[2]})`}"></div>
       </div>
-      <div class="one-img" style="background-image:url(//yanxuan.nosdn.127.net/9325ccc8a1507ac60a13481681cfd88a.png?imageView&quality=75);background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-ms-background-size:cover;-moz-background-size:cover;background-position:center;background-repeat:no-repeat;"></div>
+      <div class="one-img" :style="{backgroundImage:`url(${surprise.itemPicUrl})`}" v-else></div>
     </div>
-    <div class="desc">买一次还想买一次</div>
+    <div class="desc">{{surprise.title? surprise.title:surprise.content}}</div>
   </a>
 </template>
 
 <script>
   export default {
+    props:{
+      surprise:Object
+    },
     data() {
       return {}
     }

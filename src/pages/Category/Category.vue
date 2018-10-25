@@ -12,25 +12,19 @@
       <div class="navContiner">
         <div class="navScroll">
           <ul class="navList">
-            <li class="active">
-              <a class="txt" href="javascript:;">推荐专区</a>
-            </li>
-            <li >
-              <a class="txt" href="javascript:;">秋季专区</a>
-            </li>
-            <li >
-              <a class="txt" href="javascript:;">新品专区</a>
+            <li :class='{active:index===currentIndex}' v-for="(category,index) in category_data" :key="index" @click="current(index)">
+              <a class="txt" href="javascript:;">{{category.name}}</a>
             </li>
           </ul>
         </div>
       </div>
       <div class="cateContiner">
-        <div class="catetScroll">
-          <div class="cates">
-            <div class="banner" style="background-image:url(http://yanxuan.nosdn.127.net/82cef264da1192ba26d6fc500386962f.jpg?imageView&thumbnail=0x196&quality=75);"></div>
+        <div class="catetScroll" v-if="category_data.length">
+          <div class="cates" v-for="(category,index) in category_data" v-if="index===currentIndex">
+            <div class="banner" :style="{backgroundImage:'url('+category.bannerUrl+')'}"></div>
             <div class="cateList" >
-              <SpecialItem />
-              <CategoryItem/>
+              <SpecialItem v-if="category.type" :subCateList="category.subCateList"/>
+              <CategoryItem v-else :category="category"/>
             </div>
           </div>
         </div>
@@ -45,6 +39,36 @@
   import CategoryItem from './CategoryItem/CategoryItem.vue'
   import SpecialItem from './SpecialItem/SpecialItem.vue'
   export default {
+    data(){
+      return{
+        currentIndex:0
+      }
+    },
+    mounted(){
+      this.$store.dispatch('getCategoryData',()=>{
+        this.$nextTick(()=>{
+          this.navScroll=new BScroll('.navScroll',{
+            click: true,
+            scrollX:false,
+          });
+          setTimeout(()=>{
+            this.catetScroll=new BScroll('.catetScroll',{
+              click: true,
+              startY: 0
+            });
+          },1000)
+        })
+      });
+
+    },
+    computed:{
+      ...mapState(['category_data']),
+    },
+    methods:{
+      current(index){
+        this.currentIndex=index;
+      }
+    },
     components:{
       CategoryItem,
       SpecialItem
@@ -70,7 +94,7 @@
         background-color: #d9d9d9;
         left: 0;
         width: 100%;
-        height: 1*$rem;
+        height: 2*$rem;
         -webkit-transform-origin: 50% 100% 0;
         transform-origin: 50% 100% 0;
         bottom: 0
@@ -105,12 +129,12 @@
       position relative
       width 100%
       height 100%
-      padding-top 88*$rem
+      padding-top 80*$rem
       box-sizing border-box
       background-color: #fff
       >.navContiner
         position: absolute;
-        top: 88*$rem
+        top: 78*$rem
         left: 0;
         bottom: 0;
         z-index: 1;
@@ -121,7 +145,7 @@
           background-color: rgba(0,0,0,.15);
           top: 0;
           bottom: 0;
-          width: 1*$rem;
+          width: 2*$rem;
           -webkit-transform-origin: 100% 50% 0;
           transform-origin: 100% 50% 0;
           right: 0
@@ -168,12 +192,12 @@
           overflow hidden
           position: relative
           >.cates
-            >.banner
+            .banner
               width: 100%;
               height: 2.56rem;
               display: table;
               margin-bottom: .42667rem;
               background: center no-repeat #f4f4f4;
-              background-size: cover;
+              background-size: 100%;
               border-radius: 4*$rem
 </style>

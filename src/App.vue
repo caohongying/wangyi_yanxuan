@@ -20,7 +20,7 @@
     height 100%
     overflow hidden
   .app
-    /*height 100%*/
+    height 100%
     /*width 100%*/
     background #f4f4f4
 </style>
