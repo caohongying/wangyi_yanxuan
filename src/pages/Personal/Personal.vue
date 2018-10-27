@@ -121,15 +121,15 @@
               this.$router.replace('/home')
             }
           }else{
-            if(!pwd1){
-              alert('请验证码')
+            if(!/^.{4}$/.test(pwd1)){
+              alert('请输入正确的验证码')
             }else {
               this.$router.replace('/home')
             }
           }
         }else {//邮箱登录
-          if(!mail){
-            alert('请输入邮箱')
+          if(!/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/.test(mail)){
+            alert('请输入正确的邮箱')
           }else{
             if(!pwd){
               alert('请输入密码')
@@ -309,7 +309,6 @@
           margin-top: .53333rem
           padding: 1.6rem 0.2rem 0
           .inputWarp
-
             position relative
             padding .25rem 0
             &::after

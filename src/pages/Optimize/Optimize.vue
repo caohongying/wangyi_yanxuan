@@ -7,7 +7,7 @@
           <div class="swiper-container">
             <div class="swiper-wrapper">
               <a class="swiper-slide" v-for="(bannerList,index) in optimize_data.banner" :key="index">
-                <img v-lazy="bannerList.picUrl">
+                <img :src="bannerList.picUrl">
                 <div class="content">
                   <div class="subTitle">{{bannerList.subTitle}}</div>
                   <div class="title">{{bannerList.title}}</div>
@@ -177,13 +177,15 @@
         });
         this.scrollBox.on('scroll',({x,y})=>{
           //判断是否显示滑动到顶部图标
+          this.scrollY=y;
           if(Math.abs(y)>document.body.clientHeight){
+
             this.isShowGotoTop=true
           }else {
             this.isShowGotoTop=false
           }
 //          实时获取滑动的高度,用于回到顶部和计算数组长度
-          this.scrollY=y
+          console.log(y,document.body.clientHeight)
         });
 
         this.articleScroll=new BScroll('#article-scroll',{
@@ -198,11 +200,11 @@
         this.swiper=new Swiper('.swiper-container',{
           centeredSlides: true,
           slidesPerView: 'auto',
-          spaceBetween: -5,
-         /* autoplay: {
+          spaceBetween: 3,
+          autoplay: {
             delay: 2500,
             disableOnInteraction: false,
-          },*/
+          },
           loop:true
         });
       },
@@ -271,7 +273,7 @@
               >.swiper-slide
                 position: relative;
                 display: block;
-                width: 690*$rem
+                width: 660*$rem
                 padding: 0 .13333rem;
                 >img
                   width 100%

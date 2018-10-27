@@ -5,10 +5,9 @@
         <span v-if="className==='newItemList'">新品首发</span>
         <span v-else="">人气推荐·好物精选</span>
         <div>
-                <span>
-                  <span>查看全部</span>
-                  <i class="right-icon"></i>
-                </span>
+          <span>
+            <span>查看全部</span>
+          </span>
         </div>
       </a>
     </header>
@@ -20,9 +19,9 @@
               <img :src="item.listPicUrl">
             </div>
             <div class="item-name">
-                        <span>
-                          {{item.name}}
-                        </span>
+              <span>
+                {{item.name}}
+              </span>
             </div>
             <div class="item-desc">
               {{item.simpleDesc}}
@@ -31,9 +30,7 @@
           </a>
         </li>
         <li class="item-more">
-          <a>
-            <span>查看全部</span>
-          </a>
+          查看全部
         </li>
       </ul>
     </div>
@@ -94,21 +91,10 @@
           font-size: .37333rem;
           line-height: .74667rem;
           background: #D8E5F1;
-          i
-            position: absolute;
-            top: .22667rem;
-            background: url(//yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/indexNewArrow-f3b56d449b.png);
-            background-size: .13333rem .29333rem;
-            display: inline-block;
-            height: .29333rem;
-            width: .13333rem;
-            margin-left: .08rem;
         &.optimize
           color: #B4A078;
           >div
             background-color  #F4E9CB
-            i
-              background url(//yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/indexPopularArrow-fb701819de.png)
     >.ItemList
       height: 6.4rem
       background-color: #fff;
@@ -131,20 +117,17 @@
             margin: 0 .4rem;
             line-height: 3.73333rem;
             text-align: center;
-            >a>span
-              font-size: .37333rem;
-              color: #666
+            font-size: .37333rem;
+            color: #666
           >a
             width 100%
-            >.img-warp
+            .img-warp
               width 100%
               background-color #f4f4f4
               margin-bottom: .26667rem
-              >img
+              img
                 width 100%
                 display block
-
-
             >.item-name
               margin-top: .13333rem;
               padding: 0 .13333rem;
@@ -155,7 +138,6 @@
               overflow: hidden;
               white-space: nowrap;
               color: #333;
-
             >.item-desc
               display: block;
               margin-bottom: .18667rem;

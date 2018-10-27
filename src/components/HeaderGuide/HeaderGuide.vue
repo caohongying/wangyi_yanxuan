@@ -39,7 +39,6 @@
       background-color: #d9d9d9;
       width: 100%;
       height: 1px;
-      transform-origin: 50% 100% 0;
       bottom: 0
     >.headerWarp
       z-index: 1;
@@ -57,7 +56,6 @@
         height: .58667rem;
         background-position: 0 -.98667rem;
         display: inline-block;
-        vertical-align: middle;
         transform translateY(50%)
         background-image: url(//yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/sprites/hd-s28ce1ea0be-3d137edb2d.png);
         background-repeat: no-repeat;
@@ -72,7 +70,7 @@
         background-repeat: no-repeat;
         background-size: 2.29333rem 4.96rem
       >rightWarp
-        margin-left: auto;
+        /*margin-left: auto;*/
         margin-right: .06667rem
       .searchWarp
         margin-right: .26667rem;
@@ -88,7 +86,7 @@
       .shop-icon
         width: .85333rem;
         height: .85333rem;
-        background-position: 0 0
+        /*background-position: 0 0*/
         display: inline-block;
         vertical-align: middle;
         background-image: url(//yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/sprites/hd-s28ce1ea0be-3d137edb2d.png);

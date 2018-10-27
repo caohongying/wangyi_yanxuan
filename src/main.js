@@ -5,7 +5,7 @@ import App from './App.vue'
 import store from './store'
 import './mock/mock'
 import VueLazyload from 'vue-lazyload'
-import loading from './common/loading.jpg'
+import loading from './common/loading.gif'
 Vue.component(Button.name, Button)
 Vue.use(VueLazyload,{
   loading

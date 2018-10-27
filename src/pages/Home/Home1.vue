@@ -11,8 +11,7 @@
       <!--头部导航-->
       <div class="nav">
         <ul class="navList" ref="typesUl">
-          <li :class="{active:currentIndex===0}" @click="selectItem(0)">推荐</li>
-          <li :class="{active:currentIndex===index+1}" @click="selectItem(index+1)" v-for="(item,index) in home_data.cateList" :key="index">{{item.name}}</li>
+          <li :class="{active:currentIndex===index}" @click="selectItem(index)" v-for="(item,index) in home_data.cateList" :key="index">{{item.name}}</li>
         </ul>
       </div>
     </header>
@@ -367,10 +366,9 @@
 
             .swiper-pagination
               .swiper-pagination-bullet
-
+                display inline-block
                 width .53333rem
                 height .03333rem
-
                 background #fff
                 opacity .4
                 padding 0

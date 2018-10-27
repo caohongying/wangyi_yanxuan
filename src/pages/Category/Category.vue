@@ -23,8 +23,7 @@
           <div class="cates" v-for="(category,index) in category_data" v-if="index===currentIndex">
             <div class="banner" :style="{backgroundImage:'url('+category.bannerUrl+')'}"></div>
             <div class="cateList" >
-              <SpecialItem v-if="category.type" :subCateList="category.subCateList"/>
-              <CategoryItem v-else :category="category"/>
+              <CategoryItem :category="category"/>
             </div>
           </div>
         </div>
@@ -37,7 +36,6 @@
   import {mapState} from 'vuex'
   import BScroll from 'better-scroll'
   import CategoryItem from './CategoryItem/CategoryItem.vue'
-  import SpecialItem from './SpecialItem/SpecialItem.vue'
   export default {
     data(){
       return{
@@ -51,12 +49,10 @@
             click: true,
             scrollX:false,
           });
-          setTimeout(()=>{
-            this.catetScroll=new BScroll('.catetScroll',{
-              click: true,
-              startY: 0
-            });
-          },1000)
+          this.catetScroll=new BScroll('.catetScroll',{
+            click: true,
+            startY: 0
+          });
         })
       });
 
@@ -71,7 +67,6 @@
     },
     components:{
       CategoryItem,
-      SpecialItem
     }
   }
 </script>
@@ -146,15 +141,16 @@
           top: 0;
           bottom: 0;
           width: 2*$rem;
-          -webkit-transform-origin: 100% 50% 0;
-          transform-origin: 100% 50% 0;
+          /*-webkit-transform-origin: 100% 50% 0;*/
+          /*transform-origin: 100% 90% 0;*/
           right: 0
         >.navScroll
           width 100%
           height 100%
           overflow hidden
           position: relative
-          ul
+          .navList
+            padding-bottom 1.5rem
             li
               position relative
               width: 100%;
@@ -195,7 +191,7 @@
             .banner
               width: 100%;
               height: 2.56rem;
-              display: table;
+              display: block;
               margin-bottom: .42667rem;
               background: center no-repeat #f4f4f4;
               background-size: 100%;

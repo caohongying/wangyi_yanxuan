@@ -1,11 +1,11 @@
 <template>
   <div class="cateListL2">
-    <div class="title">{{category.name}}</div>
+    <div class="title" v-if="!category.type">{{category.name}}</div>
     <ul class="list">
       <li class="cateItem" v-for="(subCate,index) in category.subCateList" :key="index">
         <a href="javascript:;">
           <div class="imgWarp">
-            <img :src="subCate.wapBannerUrl">
+            <img v-lazy="subCate.wapBannerUrl">
           </div>
           <div class="name">{{subCate.name}}</div>
         </a>
@@ -38,6 +38,7 @@
       font-weight: 700;
       border-bottom: 1px solid #d9d9d9
     >.list
+      padding-bottom 1rem
       >.cateItem
         display: inline-block;
         margin-right: 0.23133rem;
